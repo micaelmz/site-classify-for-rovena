@@ -1,70 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-        <meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>Rovena - Classificador de Ofensas</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-  <title>Beautiful Website</title>
-  <style>
-    /* General styles */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #282a36;
-      color: #fff;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    /* Styles for the buttons */
-    .buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      
-    }
-    .buttons button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #444;
-      color: #fff;
-      font-size: 16px;
-      margin: 1%;
-      margin-bottom: 5%;
-    }
-    /* Styles for the main text area */
-    .main-text {
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      font-size: 24px;
-      text-align: center;
-    }
-  </style>
-  <style type="text/css">
-img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]{
-display:none;
-}
-</style>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
-  <h1 id="classe"> </h1>
-  <div class="main-text">
-    <p id="text">
 
-    </p>   
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sign In Start -->
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-6">
+                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="index.html" class="">
+                                <h3 class="text-primary"><i class="me-2"></i>Rovena</h3>
+                            </a>
+                            <h3>Gerar Acesso</h3>
+                        </div>
+                        <form id="form" method="post" action="copy_files.php">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="destination_path" title="Digite somente letras e números" maxlength="20" pattern="[a-zA-Z0-9]+" class="form-control" id="floatingInput" placeholder="João">
+                            <label for="floatingInput">Nome de utilizador</label>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Copiar link automaticamente</label>
+                            </div>
+                            <a href="">Ajuda</a>
+                        </div>
+                        <button id="submit-button" type="submit" class="btn btn-primary py-3 w-100 mb-4">Começar a Classificar</button>
+                        <p class="text-center mb-0">Um total de <span style="color: #EB1616" id="users">0</span> pessoas ajudaram a classificar <span style="color: #EB1616" id="tweets">0</span> tweets.</p>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign In End -->
     </div>
-  <div class="buttons">
-    <button id="button1">Offensive</button>
-    <button id="button0">Not Offensive</button><br>
-    <button id="saveButton">Save Progress</button>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
-  <script src="script.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        function copyToClipboard(text) {
+                // Cria um elemento de input oculto
+                var input = document.createElement('input');
+                input.style.position = 'fixed';
+                input.style.opacity = 0;
+                input.value = text;
+                document.body.appendChild(input);
+
+                input.select();
+
+                document.execCommand('copy');
+                document.body.removeChild(input);
+            }
+        // Adiciona um evento de submit ao formulário
+        document.getElementById('form').addEventListener('submit', function(event) {
+            var checkbox = document.getElementById('exampleCheck1');
+            var inputValue = document.getElementById('floatingInput').value;
+
+            if (checkbox.checked) 
+                copyToClipboard("http://www.treinamento.rovena.tech/"+inputValue);
+        });
+
+    </script>
+    <script>
+        // Usuario ja existe
+        const currentUrl = window.location.href;
+
+        if (currentUrl.includes('?')) {
+            const message = currentUrl.split('?')[1];
+            alert("O nome " + message + " já está sendo utilizado.\nPor favor, escolha outro!");
+        }
+    </script>
+    <script>
+        async function fetchData() {
+            var users;
+            fetch('csv_valor.rov')
+            .then(response => response.text())
+            .then(data => {
+                users = data;
+            });
+            
+            const requests = [];
+            for (var j = 0; j <= 35; j++) {
+                requests.push(fetch("csv/" + j + ".csv"));
+            }
+
+            const responses = await Promise.all(requests);
+
+            let total = 0;
+            for (let response of responses) {
+                const data = await response.text();
+                console.log("Arquivo carregado com sucesso.");
+                const results = Papa.parse(data);
+                console.log("Resultados obtidos:", results);
+                let count = 0;
+                for (var i = 0; i < results.data.length; i++) {
+                    if (results.data[i][3]) {
+                        count++;
+                    }
+                }
+                total += count;
+                console.log("Valor total atualizado:", total);
+                document.getElementById('tweets').innerHTML = total;
+                document.getElementById('users').innerHTML = users;
+            }
+            }
+
+        fetchData();
+    </script>
 </body>
+
 </html>

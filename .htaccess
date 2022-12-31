@@ -1,0 +1,13 @@
+<IfModule mod_security2.c> 
+SecRuleRemoveById 350147
+SecRuleRemoveById 340114
+SecRuleRemoveById 332039
+</IfModule>
+
+Header set Cache-Control "max-age=0"
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

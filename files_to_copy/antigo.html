@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+
+  <title>Rovena - Classificador de Ofensas</title>
+<style>
+  /* General styles */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #282a36;
+    color: #fff;
+  }
+  h1, h2 {
+    margin-top: 5%;
+    text-align: center;
+  }
+     h4 {
+    margin: -2rem;
+    margin-top: 1%;
+    text-align: center;
+  }
+
+  /* Styles for the buttons */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .buttons button {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    background-color: #444;
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0.4%;
+    margin-bottom: 10%;
+  }
+  .buttons button:hover {
+    background-color: #555;
+    cursor: pointer;
+  }
+
+  /* Styles for the buttons with id "button0" and "button1" */
+  #button0:hover {
+    background-color: green;
+  }
+  #button1:hover {
+    background-color: red;
+  }
+  
+  #saveButton{
+      margin-bottom: 5%;
+  }
+  
+  #backwards{
+      margin-bottom: 5%;
+  }
+
+
+  /* Styles for the main text area */
+  .main-text {
+    width: 90%;
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 1.8rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Media query for mobile devices */
+  @media screen and (max-width: 1080px) {
+    /* Make the buttons take up the full width of the screen */
+    .buttons {
+      width: 100%;
+      margin-bottom: 50%;
+      text-align: center;
+      transform: scale(1.75);
+    }
+    
+    #saveButton{
+        margin-bottom: -1%;
+    }
+    
+    #backwards{
+        margin-bottom: -1%;
+    }
+    
+    h4 {
+    font-size:2.5rem;
+  }
+    
+     h1, h2 {
+    margin-top: 7.5%;
+    font-size: 5rem;
+  }
+  
+    /* Make the main text area take up the full width of the screen */
+    .main-text {
+      width: 150%;
+      max-width: 80%;
+      font-size: 3rem;
+    }
+  }
+</style>
+<script>
+const ID_CSV = [ID_CSV];
+</script>
+
+
+  <style type="text/css">
+img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]{
+display:none;
+}
+</style>
+</head>
+<body>
+    <h4 id="counter"></h4>
+  <h1 id="classe"> </h1>
+  <div class="main-text">
+    <p id="text">
+
+    </p>   
+    </div>
+  <div class="buttons">
+    <button id="button1">&nbspOfensivo&nbsp</button>
+    <button id="button0">Não Ofensivo</button><br>
+    </div>
+    <div>
+  <div class="buttons">
+    <button id="backwards">&nbsp&nbsp←&nbsp&nbsp</button>
+    <button id="saveButton">&nbspSalvar Alterações&nbsp</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+  <script>
+      // Read the CSV file and extract the text from the "description" column
+Papa.parse('csv/[ID_CSV].csv', {
+  download: true,
+  header: true,
+  complete: function(results) {
+    const data = results.data;
+
+    // Check if the 'data' array is empty
+    if (data.length === 0) {
+      alert('The CSV file is empty.');
+      return;
+    }
+    
+
+    // Initialize the 'currentRow' variable with the last row that has a value in the 'classification' column
+    let currentRow = data.length - 1;
+    while (currentRow >= 0 && !data[currentRow].Classification) {
+      currentRow--;
+    }
+
+
+    // If no row with a value in the 'classification' column was found, set 'currentRow' to 0
+    if (currentRow < 0) {
+      currentRow = 0;
+    }else{
+      currentRow++;
+    }
+
+    if (currentRow >= data.length) {
+      alert('The CSV file has been fully classified.');
+      return;
+    }
+
+    // Display the text from the first row of the "description" column
+    const textElement = document.getElementById('text');
+    textElement.innerHTML = data[currentRow].Text;
+    
+    const classElement = document.getElementById('classe');
+    classElement.innerHTML = data[currentRow].Category;
+    
+    const counterElement = document.getElementById('counter');
+    counterElement.innerHTML = `${currentRow} / ${data.length}`;
+
+    // Add event listeners for the buttons
+    const button0 = document.getElementById('button0');
+    button0.addEventListener('click', () => {
+      // Update the classification 0 in the data array
+      data[currentRow].Classification = 0;
+
+      // Move to the next row of the "description" column
+      currentRow++;
+      textElement.innerHTML = data[currentRow].Text;
+      classElement.innerHTML = data[currentRow].Category;
+      counterElement.innerHTML = `${currentRow} / ${data.length}`;
+    });
+
+    const button1 = document.getElementById('button1');
+    button1.addEventListener('click', () => {
+      // Update the classification 1 in the data array
+      data[currentRow].Classification = 1;
+
+      // Move to the next row of the "description" column
+      currentRow++;
+      textElement.innerHTML = data[currentRow].Text;
+      classElement.innerHTML = data[currentRow].Category;
+      counterElement.innerHTML = `${currentRow} / ${data.length}`;
+    });
+    
+    const backwards = document.getElementById('backwards');
+    backwards.addEventListener('click', () => {
+        currentRow--;
+        textElement.innerHTML = data[currentRow].Text;
+        classElement.innerHTML = data[currentRow].Category;
+        counterElement.innerHTML = `${currentRow} / ${data.length}`;
+    });
+    
+    // Add an event listener for the save button
+    const saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', () => {
+    // Convert the data array to a CSV string
+    const csv = Papa.unparse(data);
+    // Create a new FormData object
+    const formData = new FormData();
+    // Add the CSV string to the FormData object
+    formData.append('csv', csv);
+    // Add the constant to the FormData object
+    formData.append('ID_CSV', ID_CSV);
+    // Pass the FormData object to the 'save-csv.php' file
+    fetch('save-csv.php', {
+    method: 'POST',
+    body: formData
+    }).then(response => {
+    // Reload the page
+    alert('The CSV file has been saved.');
+    window.location.href = window.location.href;
+    // else if catch an error
+    }).catch(error => {
+        alert('An error occurred while saving the CSV file.');
+    });
+    });
+  }
+});
+
+  </script>
+</body>
+</html>

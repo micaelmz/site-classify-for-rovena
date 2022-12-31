@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title>Rovena - Classificador de Ofensas</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+        
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid position-relative d-flex p-0">
+            <!-- Spinner Start -->
+            <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <!-- Spinner End -->
+
+            <!-- Sidebar Start -->
+            <div class="sidebar pe-4 pb-3">
+                <nav class="navbar bg-secondary navbar-dark">
+                    <a href="index.html" class="navbar-brand mx-4 mb-3">
+                        <h3 class="text-primary"><i class="me-2"></i>Rovena</h3>
+                    </a>
+                    <div class="d-flex align-items-center ms-4 mb-4">
+                        <div class="position-relative">
+                            <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">[USERNAME]</h6>
+                            <span>Juíz</span>
+                        </div>
+                    </div>
+                    <div class="navbar-nav w-100">
+                        <a href="index.html" class="nav-item nav-link active"><i class="fa fa-clipboard-check me-2"></i>Classificação</a>
+                        <a href="#" class="nav-item nav-link page-404"><i class="bi bi-info-circle-fill me-2"></i>Ajuda</a>
+                        <a href="#" class="nav-item nav-link page-404"><i class="bi bi-bar-chart-fill me-2"></i>Status</a>
+                    </div>
+                </nav>
+            </div>
+            <!-- Sidebar End -->
+
+            <!-- Content Start -->
+            <div class="content">
+                <!-- Navbar Start -->
+                <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                    <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                        <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                    </a>
+                    <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                    </a>
+                    <form class="d-none d-md-flex ms-4">
+                        <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                    </form>
+                    <div class="navbar-nav align-items-center ms-auto">
+                        <div class="nav-item dropdown">
+                             <!-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Message</span>
+                            </a> -->
+                            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                                <a href="#" class="dropdown-item">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                        <div class="ms-2">
+                                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                            <small>15 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                        <div class="ms-2">
+                                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                            <small>15 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                        <div class="ms-2">
+                                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                            <small>15 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item text-center">See all message</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificações</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    <h6 class="fw-normal mb-0">Perfil criado!</h6>
+                                    <small>[HORA_NOTIFICACAO1]</small>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item text-center">Ver todas notificações</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">[USERNAME]</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                                <a href="#" class="dropdown-item">Meu Perfil</a>
+                                <a href="#" class="dropdown-item">Configurações</a>
+                                <a href="#" class="dropdown-item">Sair</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Navbar End -->
+
+                <!--  Classify -->
+                <div class="container-fluid pt-4 px-4 text-center"  id="scrollspy">
+                    <div class="bg-secondary text-center rounded p-4">
+                        <div class="main-text">
+                            <h2 id="classe"> </h2>
+                            <p id="text"></p>
+                        </div>
+                        <button id="button1" type="button" class="btn btn-primary m-2">Ofensivo</button>
+                        <button id="button0" type="button" class="btn btn-success m-2">Não Ofensivo</button>
+                    </div>
+                </div>
+                <!-- Classify End -->
+
+                <!-- Sale & Revenue Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="row g-4">
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-left p-4">
+                                <i class="fa fa-check fa-3x text-primary"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Tweets Classificados</p>
+                                    <h6 class="mb-0" id="count_done">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-left p-4">
+                                <i class="fa fa-clock fa-3x text-primary"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Tweets Restantes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    <h6 class="mb-0" id="count_remaining">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-left p-4">
+                                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Todos Classificados&nbsp;&nbsp;</p>
+                                    <h6 class="mb-0" id="totalAnalized">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-left p-4">
+                                <i class="fa fa-users fa-3x text-primary"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Usúarios Ajudando&nbsp;&nbsp;</p>
+                                    <h6 class="mb-0" id="totalUsers">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sale & Revenue End -->
+
+                <!-- Recent Sales Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-secondary text-center rounded p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0 ">Minhas últimas classificações</h6>
+                            <a class="fa fa-download"> Ver Todos</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-white">
+                                        <th scope="col" id="tabCheckbox"><input class="form-check-input" type="checkbox"></th>
+                                        <th scope="col" id="tabText">Texto</th>
+                                        <th scope="col" id="tabClassication">Veredito</th>
+                                        <th scope="col" id="tabAction">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td id="csv_text1">[TEXTO-1]</td>
+                                        <td id="classification1">[VEREDITO-1]</td>
+                                        <td><a class="btn btn-sm btn-primary" id="corrigir1">Corrigir</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td id="csv_text2">[TEXTO-2]</td>
+                                        <td id="classification2">[VEREDITO-2]</td>
+                                        <td><a class="btn btn-sm btn-primary" id="corrigir2">Corrigir</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td id="csv_text3">[TEXTO-3]</td>
+                                        <td id="classification3">[VEREDITO-3]</td>
+                                        <td><a class="btn btn-sm btn-primary" id="corrigir3">Corrigir</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td id="csv_text4">[TEXTO-4]</td>
+                                        <td id="classification4">[VEREDITO-4]</td>
+                                        <td><a class="btn btn-sm btn-primary" id="corrigir4">Corrigir</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td id="csv_text5">[TEXTO-5]</td>
+                                        <td id="classification5">[VEREDITO-5]</td>
+                                        <td><a class="btn btn-sm btn-primary" id="corrigir5">Corrigir</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent Sales End -->
+                
+                <!-- Footer Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-secondary rounded-top p-4">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center text-sm-start">
+                                &copy; <a href="#">Rovena</a>, All Right Reserved. 
+                            </div>
+                            <div class="col-12 col-sm-6 text-center text-sm-end">
+                                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                                Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer End -->
+            </div>
+            <!-- Content End -->
+
+            <!-- Back to Top -->
+            <a href="#" id="saveButton" title="Salvar Progresso" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-cloud-arrow-up-fill"></i></a>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/chart/chart.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+
+        <!-- Scripts -->
+        <script>
+            // Scrollspy
+            function isElementPartiallyInViewport(element) {
+                const rect = element.getBoundingClientRect();
+            return ((rect.top > 0 && rect.top < window.innerHeight) || (rect.bottom > 0 && rect.bottom < window.innerHeight));
+            }
+            
+            let elementHidden = false;
+            
+            window.addEventListener('scroll', function(event) {
+                const element = document.getElementById('scrollspy');
+                    if (isElementPartiallyInViewport(element) && !elementHidden) {
+                        if (event.deltaY < 0) {
+                            console.log("subindo");
+                            window.scrollBy(0, -element.offsetHeight);
+                        }else{
+                            console.log("descendo");
+                            window.scrollBy(0, element.offsetHeight);
+                        }
+                        elementHidden = true;
+                    }
+                    if (window.scrollY === 0) {
+                        elementHidden = false;
+                    }
+                });
+        </script>
+        <script>
+            const ID_CSV = [ID_CSV];
+
+            // Read the CSV file and extract the text from the "description" column
+            Papa.parse('csv/[ID_CSV].csv', {
+                download: true,
+                header: true,
+                complete: function(results) {
+
+                const data = results.data;
+                
+                // Check if the 'data' array is empty
+                if (data.length === 0) {
+                    alert('O arquivo CSV está vazio.');
+                    return;
+                }
+                
+                // Initialize the 'currentRow' variable with the last row that has a value in the 'classification' column
+                let currentRow = data.length - 1;
+                while (currentRow >= 0 && !data[currentRow].Classification) {
+                    currentRow--;
+                }
+                
+                // If no row with a value in the 'classification' column was found, set 'currentRow' to 0
+                if (currentRow < 0) {
+                    currentRow = 0;
+                }else{
+                    currentRow++;
+                }
+        
+                if (currentRow >= data.length) {
+                    alert('O arquivo CSV já foi completamente classificado.');
+                    return;
+                }
+
+                const starterRow = currentRow;
+
+                // constantes dos IDs dos elementos HTML
+                const button0 = document.getElementById('button0'); // não ofensivo
+                const button1 = document.getElementById('button1'); // ofensivo
+                const textElement = document.getElementById('text');
+                const classElement = document.getElementById('classe');
+                const countdElement = document.getElementById('count_done');
+                const countrElement = document.getElementById('count_remaining');
+                const classification1 = document.getElementById('classification1');
+                const classification2 = document.getElementById('classification2');
+                const classification3 = document.getElementById('classification3');
+                const classification4 = document.getElementById('classification4');
+                const classification5 = document.getElementById('classification5');
+                const csvText1 = document.getElementById('csv_text1');
+                const csvText2 = document.getElementById('csv_text2');
+                const csvText3 = document.getElementById('csv_text3');
+                const csvText4 = document.getElementById('csv_text4');
+                const csvText5 = document.getElementById('csv_text5');
+                const saveButton = document.getElementById('saveButton');
+                const downloadCsv = document.getElementById('downloadCsv');
+                const corrigir1 = document.getElementById('corrigir1');
+                const corrigir2 = document.getElementById('corrigir2');
+                const corrigir3 = document.getElementById('corrigir3');
+                const corrigir4 = document.getElementById('corrigir4');
+                const corrigir5 = document.getElementById('corrigir5');
+
+                // traduz a classificação do CSV de booleano para texto
+                function classificar(parametro) {
+                    if (parametro === "1") {
+                        return "Ofensivo";
+                    } else if (parametro === "0") {
+                        return "Não Ofensivo";
+                    } else {
+                        console.log(parametro);
+                        return "Atualize a Página";
+                    }
+                }
+
+                // mostra a hora no formato HH:MM DD-MM-YYYY
+                function getFormattedDateTime() {
+                    let currentTime = new Date();
+                    let hour = currentTime.getHours().toString().padStart(2, '0');
+                    let minute = currentTime.getMinutes().toString().padStart(2, '0');
+                    let day = currentTime.getDate().toString().padStart(2, '0');
+                    let month = (currentTime.getMonth() + 1).toString().padStart(2, '0'); // getMonth() returns a value in the range 0-11, so we need to add 1
+                    let year = currentTime.getFullYear().toString();
+                    return `${hour}:${minute} ${day}-${month}-${year}`;
+                }
+
+
+                // limpa a string para ser exibida no HTML
+                function limparString(str) {
+                    // Remover quebras de linha
+                    str = str.replace(/\r?\n|\r/g, " ");
+                    // Remover símbolos < e >
+                    str = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                    // Cortar string em caso de ser maior que 65 caracteres
+                    if (str.length > 65) {
+                        str = str.substring(0, 65) + "...";
+                    }
+                    return str;
+                }
+                
+                function updateLabels() {
+                    textElement.innerHTML = data[currentRow].Text;
+                    classElement.innerHTML = data[currentRow].Category;
+                    countdElement.innerHTML = `${currentRow}`;
+                    countrElement.innerHTML = `${data.length-currentRow}`;
+                    if (currentRow > 5){
+                        classification1.innerHTML = classificar(data[currentRow-1].Classification);
+                        classification2.innerHTML = classificar(data[currentRow-2].Classification);
+                        classification3.innerHTML = classificar(data[currentRow-3].Classification);
+                        classification4.innerHTML = classificar(data[currentRow-4].Classification);
+                        classification5.innerHTML = classificar(data[currentRow-5].Classification);
+                        csvText1.innerHTML = limparString(data[currentRow-1].Text);
+                        csvText2.innerHTML = limparString(data[currentRow-2].Text);
+                        csvText3.innerHTML = limparString(data[currentRow-3].Text);
+                        csvText4.innerHTML = limparString(data[currentRow-4].Text);
+                        csvText5.innerHTML = limparString(data[currentRow-5].Text);
+                    }
+                }
+
+                updateLabels();
+
+
+                // botões de corrigir da tabela
+                function corrigir(num) {
+                    if (currentRow > 5){
+                    return () => {
+                        currentRow -= num;
+                        updateLabels();
+                        window.scrollTo(0, 0);
+                    };
+                    }
+                }
+
+                corrigir1.addEventListener('click', corrigir(1));
+                corrigir2.addEventListener('click', corrigir(2));
+                corrigir3.addEventListener('click', corrigir(3));
+                corrigir4.addEventListener('click', corrigir(4));
+                corrigir5.addEventListener('click', corrigir(5));
+
+                // botões de classificação
+                button0.addEventListener('click', () => {
+                    // Update the classification 0 in the data array
+                    data[currentRow].Classification = 0;
+                    currentRow++;
+                    updateLabels();
+                });
+                
+                button1.addEventListener('click', () => {
+                    // Update the classification 1 in the data array
+                    data[currentRow].Classification = 1;
+                    currentRow++;
+                    updateLabels();
+                });
+                
+                // Add an event listener for the backspace key (previous tweet)
+                document.addEventListener('keydown', event => {
+                    if (event.keyCode === 8 && currentRow >= 1) {
+                        currentRow--;
+                        updateLabels();
+                    }
+                });
+
+                // Add an event listener for the save button
+                function saveCSV() {
+                    const csv = Papa.unparse(data);     // Convert the data array to a CSV string
+                    const formData = new FormData();    // Create a new FormData object
+                    formData.append('csv', csv);        // Add the CSV string to the FormData object
+                    formData.append('ID_CSV', ID_CSV);  // Add the constant to the FormData object
+                    // Pass the FormData object to the 'save-csv.php' file
+                    fetch('save-csv.php', {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => {
+                        // Reload the page
+                        alert('O arquivo CSV junto ao seu progresso foi salvo!\n\n' + getFormattedDateTime() + ' ' + currentRow-starterRow + 'Novas alterações foram salvas.');
+                        window.location.href = window.location.href;
+                    // else if catch an error
+                    }).catch(error => {
+                        alert('Ocorreu um erro ao salvar o arquivo CSV junto ao seu progresso.');
+                    });
+                }
+                
+
+                // salvar através do botão html
+                saveButton.addEventListener('click', saveCSV);
+
+                // salvar através do enter
+                document.addEventListener('keydown', event => {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        saveCSV();
+                    }
+                });
+                }
+            });
+        </script>
+        <script>
+            async function fetchData() {
+             var users;
+            fetch('csv_valor.rov')
+             .then(response => response.text())
+             .then(data => {
+                 users = data;
+             });
+           const requests = [];
+           for (var j = 0; j <= 35; j++) {
+             requests.push(fetch("csv/" + j + ".csv"));
+           }
+         
+           const responses = await Promise.all(requests);
+         
+           let total = 0;
+           for (let response of responses) {
+             const data = await response.text();
+             console.log("Arquivo carregado com sucesso.");
+             const results = Papa.parse(data);
+             console.log("Resultados obtidos:", results);
+             let count = 0;
+             for (var i = 0; i < results.data.length; i++) {
+               if (results.data[i][3]) {
+                 count++;
+               }
+             }
+             total += count;
+             console.log("Valor total atualizado:", total);
+             document.getElementById('totalAnalized').innerHTML = total;
+             document.getElementById('totalUsers').innerHTML = users;
+            }
+         }
+         
+         fetchData();
+         </script>
+    </body>
+</html>
